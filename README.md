@@ -1,14 +1,13 @@
 # Python Scripting in DIgSILENT
 
-Welcome to the Python scripting guide for DIgSILENT. This documentation will teach you how to leverage Python for automating tasks in DIgSILENT PowerFactory.
+Welcome to the Python scripting for DIgSILENT. This documentation will teach you how to leverage Python for automating tasks in DIgSILENT PowerFactory.
 
 ## Table of Contents
 
 1. [Introduction](#introduction)
 2. [Getting Started](#getting-started)
 3. [Basic Scripting](#basic-scripting)
-4. [Advanced Scripting](#advanced-scripting)
-5. [Troubleshooting](#troubleshooting)
+4. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -35,11 +34,8 @@ Before diving into scripting, make sure you have the following:
 
 ### Setting Up Python with DIgSILENT
 
-1. **Check Python Version**: DIgSILENT PowerFactory supports Python 2.7 and 3.x. Ensure that Python is installed and properly set up with PowerFactory.
-2. **Set Up Your Environment**:
-   - In PowerFactory, go to _Options > Settings > Python_ and configure your Python environment.
-
----
+1. Check the Python version used by DIgSILENT PowerFactory. You can find the Python API path in your PowerFactory installation directory, typically located at: `C:\\Program Files\\DIgSILENT\\PowerFactory 2022 SP2\\Python`
+2. Install the same Python version on your system. You can download Python from the official website: [Python Downloads](https://www.python.org/downloads/)
 
 ## Basic Scripting
 
@@ -48,20 +44,47 @@ Before diving into scripting, make sure you have the following:
 Here is a basic script to run a load flow study in DIgSILENT:
 
 ```python
+# Import the system module
+import sys
+
+# Add the path to the PowerFactory Python module
+sys.path.append(r"C:\\Program Files\\DIgSILENT\\PowerFactory 2022 SP2\\Python\\3.8")
+
+# Import the PowerFactory module
 import powerfactory as pf
 
+# Initialize the PowerFactory application instance
 app = pf.GetApplication()
-app.ClearOutputWindow()
 
-# Load the network model
+# Load the first available network model (ElmNet is the class for networks)
 network = app.GetCalcRelevantObjects('*.ElmNet')[0]
 
-# Perform load flow analysis
+# Get the load flow command from the current study case
 lf = app.GetFromStudyCase('ComLdf')
+
+# Execute the load flow analysis
 ierr = lf.Execute()
 
+# Check if the load flow was successful (ierr = 0 means success)
 if ierr == 0:
     app.PrintPlain("Load flow executed successfully!")
 else:
     app.PrintError("Error executing load flow.")
+
 ```
+
+## Troubleshooting
+
+- Error Connecting to DIgSILENT PowerFactory: Ensure that the path in sys.path.append() is correct for your PowerFactory installation. You can find the Python API path typically located at:
+
+```bash
+C:\\Program Files\\DIgSILENT\\PowerFactory 2022 SP2\\Python\\3.x
+```
+
+- Python Version Mismatch: The Python version installed on your system must match the version required by PowerFactory. For example, if PowerFactory is using Python 3.8, you should have Python 3.8 installed. To check your Python version, run:
+
+```bash
+python --version
+```
+
+- Script Failing to Execute: Verify that the correct study case is active and that your network model is properly set up.
