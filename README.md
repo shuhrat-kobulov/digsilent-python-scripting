@@ -8,6 +8,8 @@ Welcome to the Python scripting for DIgSILENT. This documentation will teach you
 2. [Getting Started](#getting-started)
 3. [Basic Scripting](#basic-scripting)
 4. [Troubleshooting](#troubleshooting)
+5. [Contributing](contributing.md)
+6. [Start Learning](documentation/README.md)
 
 ---
 
