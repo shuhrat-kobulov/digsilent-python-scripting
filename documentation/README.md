@@ -51,7 +51,7 @@ else:
 
 ## Activate Project
 
-The ActivateProject() method in the Python API is used to activate a specific project within PowerFactory. Once activated, the project becomes the context for all subsequent actions like running simulations, managing scenarios, or executing scripts.
+The `ActivateProject()` method in the Python API is used to activate a specific project within PowerFactory. Once activated, the project becomes the context for all subsequent actions like running simulations, managing scenarios, or executing scripts.
 
 ```python
 app.ActivateProject(project_name)
