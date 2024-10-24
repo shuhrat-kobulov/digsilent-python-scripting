@@ -90,3 +90,6 @@ python --version
 ```
 
 - Script Failing to Execute: Verify that the correct study case is active and that your network model is properly set up.
+
+<br />
+<a href="documentation/README.md" style="text-align: center;">Start learning 😎</a>
